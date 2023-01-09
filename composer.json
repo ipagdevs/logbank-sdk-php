@@ -1,0 +1,20 @@
+{
+    "name": "kubinyete/template-sdk-php",
+    "description": "Base template for generating highly optimized webservice SDKs",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kubinyete\\Logbank\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vitor Kubinyete",
+            "email": "vitorkubinyete@hotmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": ">=6.0",
+        "kubinyete/assertation": "^0.0.1"
+    }
+}
