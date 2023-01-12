@@ -78,7 +78,7 @@ class LogbankClient extends Client
             $class = LogbankException::class;
 
             throw new LogbankException(
-                "* ($class) $message: " . $this->formatErrors($errors),
+                "$message: " . $this->formatErrors($errors),
                 0,
                 $e,
                 $e->getResponse(),
@@ -86,6 +86,8 @@ class LogbankClient extends Client
                 $e->getStatusMessage()
             );
         }
+
+        throw $e;
     }
 
     public function request(string $method, string $url, $body, array $query = [], array $header = [], ?SerializerInterface $serializer = null): Response
