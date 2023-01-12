@@ -1,6 +1,6 @@
 {
-    "name": "kubinyete/template-sdk-php",
-    "description": "Base template for generating highly optimized webservice SDKs",
+    "name": "kubinyete/logbank-sdk",
+    "description": "A webservice client for sending payment transactions to Logbank.",
     "type": "project",
     "autoload": {
         "psr-4": {
