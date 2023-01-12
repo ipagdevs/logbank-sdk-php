@@ -50,10 +50,7 @@ class LogbankClient extends Client
         $response = $this->post('/client/auth', $credentials->jsonSerialize());
         $response = AccessToken::parse($response->getParsed());
 
-        if (!$this->accessToken) {
-            $this->accessToken = $response;
-        }
-
+        $this->accessToken = $response;
         return $response;
     }
 
