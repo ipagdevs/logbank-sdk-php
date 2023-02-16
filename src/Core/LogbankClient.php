@@ -56,7 +56,7 @@ class LogbankClient extends Client
 
     public function createTransaction(Transaction $transaction): TransactionResponse
     {
-        $response = $this->post('/client/transaction/ecommerce/checkout', $transaction->jsonSerialize());
+        $response = $this->post('/client/transaction/ecommerce/checkout-legacy', $transaction->jsonSerialize());
         $data = $response->getParsed();
         $data = array_is_list($data) ? array_shift($data) : $data;
         return TransactionResponse::parse($data);
@@ -64,7 +64,7 @@ class LogbankClient extends Client
 
     public function cancelTransaction(TransactionCancelRequest $cancel): Response
     {
-        $response = $this->delete('/client/transaction/ecommerce/checkout', $cancel->jsonSerialize());
+        $response = $this->delete('/client/transaction/ecommerce/checkout-legacy', $cancel->jsonSerialize());
         return $response;
     }
 
@@ -73,9 +73,13 @@ class LogbankClient extends Client
     protected function exceptionThrown(Throwable $e): void
     {
         if ($e instanceof HttpException) {
-            $message = $e->getResponse()->getParsedPath('message');
-            $errors = $e->getResponse()->getParsedPath('errors', []);
-            $class = LogbankException::class;
+            if ($response = $e->getResponse()) {
+                $message = $response->getParsedPath('message');
+                $errors = $response->getParsedPath('errors', []);
+            } else {
+                $message = $e->getMessage();
+                $errors = [];
+            }
 
             throw new LogbankException(
                 "$message: " . $this->formatErrors($errors),
