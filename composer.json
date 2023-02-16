@@ -1,7 +1,7 @@
 {
     "name": "kubinyete/logbank-sdk",
     "description": "A webservice client for sending payment transactions to Logbank.",
-    "type": "project",
+    "type": "library",
     "autoload": {
         "psr-4": {
             "Kubinyete\\Logbank\\": "src/"
