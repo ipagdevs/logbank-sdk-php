@@ -12,8 +12,8 @@ class Address extends Model
         parent::__construct(
             Assert::value(compact('street', 'number', 'complement', 'neighborhood', 'city', 'state', 'country', 'zipcode'))->assocRules([
                 'street' => 'asTrim;asLimit,150;lgt,1',
-                'number' => 'asTrim;asLimit,50;alphanumeric;lgt,1',
-                'complement' => 'asTrim;asLimit,128;lgt,1',
+                'number' => 'asTrim;asLimit,50;alphanumeric;lgt,0',
+                'complement' => 'asTrim;asLimit,128;lgte,0',
                 'neighborhood' => 'asTrim;asLimit,150;lgt,1',
                 'city' => 'asTrim;asLimit,100;lgt,1',
                 'state' => 'asTrim;lbetween,2,2;alphanumeric',
